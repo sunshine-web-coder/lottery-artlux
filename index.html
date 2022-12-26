@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>NFT</title>
+	<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.9/dist/index.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://bundle.run/buffer@6.0.3"></script>
+	 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	 <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css">
+	 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+
+	<div class="modal fade bd-example-modal-lgg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content" style="background-color: #212529;">
+			<table class="table table-dark">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Pot Size</th>
+			      <th scope="col">Winner Number</th>
+			      <th scope="col">End Time</th>
+			      <th scope="col">Status</th>
+			    </tr>
+			  </thead>
+			  <tbody id="rows_all">
+				</tbody>
+			</table>	
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content" style="background-color: #212529;">
+			<table class="table table-dark">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Pot Size</th>
+			      <th scope="col">Winner Number</th>
+			      <th scope="col">End Time</th>
+			      <th scope="col">Status</th>
+			    </tr>
+			  </thead>
+			  <tbody id="rows_account">
+				</tbody>
+			</table>	
+	    </div>
+	  </div>
+	</div>
+	
+	<script>
+	const connect = async () => {
+		if(window.ethereum){
+			if(window.ethereum.selectedAddress){
+				console.log("connected")
+				return true;
+			}
+		}
+      const providerOptions = {
+        walletconnect: {
+          package: WalletConnectProvider.default, // required
+          options: {
+            rpc: {
+              97: "https://data-seed-prebsc-1-s1.binance.org:8545"
+            },
+          }
+        }
+      };
+
+      const Web3Modal = window.Web3Modal.default;
+      const web3Modal = new Web3Modal({
+        network: "mainnet", // optional
+        cacheProvider: false, // optional
+        providerOptions, // required
+        theme: "dark"
+      });
+
+      const provider = await web3Modal.connect();
+
+      window.web3 = new Web3(provider);
+      var accounts = await web3.eth.getAccounts();
+      account = accounts[0];
+	  console.log(account)
+
+    }
+	</script>
+	  <header id="header">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<div class="container">
+		  <a class="navbar-brand" href="#">
+				<img class="img-fluid" src="assets/images/logo.png" alt="logo">
+			  </a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mx-auto gap-4 mb-2 mb-lg-0">
+				  <li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="javascript:void(0)" id="home">Explore</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="javascript:void(0)" id="about">Drops</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="javascript:void(0)" id="contact">Stats</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="javascript:void(0)">Resources</a>
+				  </li>
+				</ul>
+				<div class="nav-after-links">
+					<div class="nav-search-div">
+						<input type="search" name="" id="" placeholder="Search">
+						<button><i class="fa-regular fa-magnifying-glass"></i></button>
+					</div>
+					<ul>
+						<li><a href="javascript:void(0)"><i class="fa-light fa-user"></i></a></li>
+						<li><a href="#/"><button class="fa-regular fa-wallet" onclick="connect()"></button></a></li>
+						<li><a href="javascript:void(0)"><i class="fa-regular fa-cart-shopping"></i></a></li>
+					</ul>
+				</div>
+			  </div>
+			</div>
+		  </nav>
+	  </header>
+	  <main>
+		<section class="pt-100 banner-main-section">
+			<div class="container">
+				<div class="row banner-main-row mt-4 mx-0 flex-column-reverse flex-lg-row">
+					<div class="col-lg-6">
+						<div class="banner-content">
+							<h5>The NFT Lottery</h5>
+							<h1 id="PotSize">---</h1>
+							<h2>In Price</h2>
+							<a class="custom-btn text-capitalize fw-bold fs-5 px-4 py-3" style="text-decoration: none;" href="#purchaseSection" >Buy Tickets</a>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="banner-img">
+							<img class="img-fluid" src="assets/images/banner-right.png" alt="banner">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="pt-100 pb-100">
+			<div class="container">
+				<div class="row justify-content-center align-items-center">
+					<div class="col-lg-6">
+						<div class="get-ticket-box">
+							<div class="get-ticket-inner">
+								<div id="purchaseSection" class="get-ticket-inner-div">
+									<div class="next-draw" id="next_draw">
+										<p><span>Next Draw</span> #--- | Draw: -- --,----, --:-- PM</p>
+									</div>
+									<div class="prizeploat" >
+										<p>Prize Plot:</p>
+										<h2 id="PrizePot2">~---</h2>
+										<br>
+										<p id="PrizeCake"><small>---</small></p>
+										
+									</div>
+									<div class="tract-ticket mb-4" style="display: flex; flex-direction: column;">
+										<h4 class="mb-3 fw-bold">Your tickets</h4>
+										<h5 id="ticketcounter" style="opacity: 0.8; color: blue;">you currenty have 0 tickets</h5>
+										<span style="opacity: 0.7;">number of tickets to purchase</span>
+										<input placeholder="1-100" type="number" min='1' max="100" style="padding: 5px; margin:5px 0px;" id="ticketNumber"></input>
+										<button id="approveBTN" class="custom-btn text-capitalize fw-bold px-5 py-3 mb-1">Approve</button>
+										<button id="buyBTN" class="custom-btn text-capitalize fw-bold px-5 py-3 mb-1">Buy Tickets</button>
+										<span style="color: red; opacity: 0.7; display: none;" id="closeWarning">round is finished, wait for new round to enter!</span>
+										<span style="color: red; opacity: 0.7; display: none;" id="ticketmaxWarning">you can not purchase more than 100 tickets!</span>
+									</div>
+								</div>
+								<div class="tecket-detail">
+									<a href="javascript:void(0)">Details <i class="fa-regular fa-chevron-down"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5">
+						<div class="get-ticket-content">
+							<h1>Get ticket now to enter draw</h1>
+							<p>You need tickets to enter the Lottery draws. The more tickets you buy, the more your winning chances. Tickets cannot be spent twice, but you can feature in more draws with more tickets.</p>
+							<h5 style="display: flex; flex-direction: column;" id="tillDraw"><span><b>0</b>h <b>8</b>m</span> until the draw</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="wallet-section pb-100">
+			<div class="container">
+				<div class="row wallet-main-row flex-column-reverse flex-lg-row">
+					<div class="col-lg-6">
+						<div class="wallet-section">
+							<h2 id="winMessage">Connect your wallet to see the result!</h2>
+							<p>Instant cashout to your wallet. Check your wallet balance to see if you won! </p>
+							<button id="checkWin" class="custom-btn text-capitalize fw-bold fs-5">Connect Wallet</button>
+							</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="wallet-img text-center">
+							<img class="img-fluid" src="assets/images/wallet.png" alt="wallet">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="pb-100">
+			<div class="container">
+				<div class="row justify-content-between align-items-center">
+					<div class="col-lg-5">
+						<div class="get-ticket-content">
+							<h1>Lottery Activity</h1>
+							<p>Connect your wallet to see your draw history. Click details to see finished rounds activity, including participants, prize pots, stakes, and more.</p>
+							<a class="all-history" type="button" data-toggle="modal" data-target=".bd-example-modal-lgg">All History</a>
+							<a class="custom-btn text-capitalize text-decoration-none py-3" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">Your History</a>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="get-ticket-box">
+							<div class="get-ticket-inner">
+								<div class="get-ticket-inner-div">
+									<div class="next-draw Round-custom">
+										<p><span class="fs-5">Round <span id="currentRound"></span></span> </p>
+										<p id="roundDetails"><small>Drawn Nov 29,2022, 6:00 PM</small></p>
+									</div>
+									<div class="prizeploat d-block winning-prize">
+										<span>Latest</span>
+										<p class="mb-2">Winning Number</p>
+										<ul>
+											<li>2</li>
+											<li>4</li>
+											<li>1</li>
+											<li>3</li>
+											<li>8</li>
+											<li>9</li>
+										</ul>
+									</div>
+									<div class="tract-ticket pb-100">
+										
+									</div>
+								</div>
+								<div class="tecket-detail">
+									<a href="javascript:void(0)">Details <i class="fa-regular fa-chevron-down"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+
+		<section class="pt-100 how-to-play-section">
+			<div class="container">
+				<div class="row how-to-play-main-row align-items-center">
+					<div class="col-12">
+						<div class="how-to-play-heading text-center mb-5">
+							<h2>How to Play</h2>
+							<p>Playing is simple. Buy tickets and select random numbers from the prize pot. If numbers follow the sequence of the prize pot, you win rewards sent directly to your wallet.</p>
+						</div>
+					</div>
+					<div class="col">
+						<div class="how-toplay-div text-center">
+							<img class="img-fluid" src="assets/images/play/1.png" alt="how-to-play-img">
+							<h4>Buy Tickets</h4>
+							<p>Lottery ticket is bought with Artlux Token. x ATX token represents 1 ticket. (Please set price for the ticket)</p>
+						</div>
+					</div>
+					<div class="col d-lg-block d-none">
+						<div class="how-toplay-img">
+							<img class="img-fluid" src="assets/images/play/line.png" alt="how-to-play-img">
+						</div>
+					</div>
+					<div class="col">
+						<div class="how-toplay-div text-center">
+							<img class="img-fluid" src="assets/images/play/2.png" alt="how-to-play-img">
+							<h4>Check Draw</h4>
+							<p>Wait for the draw to start. Draw typically kicks off between (set time). 1 draw equals six rounds or more.</p>
+						</div>
+					</div>
+					<div class="col d-lg-block d-none">
+						<div class="how-toplay-img">
+							<img class="img-fluid" src="assets/images/play/line1.png" alt="how-to-play-img">
+						</div>
+					</div>
+					<div class="col">
+						<div class="how-toplay-div text-center">
+							<img class="img-fluid" src="assets/images/play/3.png" alt="how-to-play-img">
+							<h4>Check Reward</h4>
+							<p>Connect your wallet to see if you won. After each round following the draw, prizes are sent directly to your wallet (if you won). Then restart the process again.</p>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<section class="pt-100 pb-100">
+			<div class="container">
+				<div class="row align-items-center pb-100">
+					<div class="col-lg-6">
+						<div class="winning-img text-center">
+							<img class="img-fluid" src="assets/images/winning.png" alt="winning">
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="winning-content">
+							<h1>Rules of winning</h1>
+							<p>To win, your ticket must follow the set rules for every draw.</p>
+							<ul>
+								<li><span></span> There are five prize brackets (chances) for the six random numbers on your ticket or draw. The numbers on your ticket must match the prize pot numbers sequentially.</li>
+								<li><span></span> If the first two numbers on your ticket match, then you win a prize for matching the first two numbers. The same applies if the ticket matches for three, four, five, or jackpot (six numbers). </li>
+								<li>The goal is to match numbers sequentially, any breakage or reorder of numbers against the prize pot becomes a loss.</li>
+								<li>You only win prizes for each match sequence which do not stack. If three numbers match, prizes are rewarded based on those three numbers (pool) and not for 2 plus 3 numbers.</li>
+							</ul>
+
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+						</div>
+					</div>
+				</div>
+				<div class="row align-items-center flex-column-reverse flex-lg-row">
+					
+					<div class="col-lg-6">
+						<div class="winning-content">
+							<h1>Rewards/Percentages</h1>
+							<p>Rewards are unequal, depending on the matching numbers. </p>
+							<ul>
+								<li>Jackpot carries the entire rewards. (set percentages for the reward/prize pool then we’ll complete here)</li>
+								<li>Artlux NFT Lottery is a program designed to bring liquidity to the ecosystem and DeFi entirely.</li>
+								<li>Artlux NFT Lottery is funded by participants. Depending on the win rate, rewards are based on a fair market value of NFTs in the marketplace. Equivalent token (ATX) is issued as reward.</li>
+								<li>Unspent funds are rolled over to the next draw or round to keep liquidity in the lottery program balanced.</li>
+							</ul>
+
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="winning-img text-center">
+							<img class="img-fluid" src="assets/images/winning1.png" alt="winning">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	  </main>
+	  <footer class="pt-100">
+		<div class="container">
+			<div class="row footer-input-data-row">
+				<div class="col-12">
+					<div class="footer-input-data">
+						<h2>Stay in the loop</h2>
+						<div class="email-div">
+							<input type="text" name="" id="" placeholder="Your Email">
+							<button class="custom-btn">Sign up</button>
+						</div>
+						<ul>
+							<li><a href="javascript:void(0)"><i class="fa-brands fa-facebook-f"></i></a></li>
+							<li><a href="javascript:void(0)"><i class="fa-brands fa-instagram"></i></a></li>
+							<li><a href="javascript:void(0)"><i class="fa-brands fa-twitter"></i></a></li>
+							<li><a href="javascript:void(0)"><i class="fa-brands fa-linkedin-in"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row footer-main-row pt-100 mb-5">
+				<div class="col-lg-3">
+					<div class="footer-information">
+						<img class="img-fluid" src="assets/images/footer.png" alt="logo">
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+					</div>
+				</div>
+				<div class="col-lg-2 col-6 offset-lg-1">
+					<div class="footer-link">
+						<h4>Marketplace</h4>
+						<ul>
+							<li><a href="javascript:void(0)">All NFTs</a></li>
+							<li><a href="javascript:void(0)">Art</a></li>
+							<li><a href="javascript:void(0)">Collectibles</a></li>
+							<li><a href="javascript:void(0)">Domain Names</a></li>
+							<li><a href="javascript:void(0)">Music</a></li>
+							<li><a href="javascript:void(0)">Photography</a></li>
+							<li><a href="javascript:void(0)">Sports</a></li>
+							<li><a href="javascript:void(0)">Trading Cards</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-6">
+					<div class="footer-link">
+						<h4>My Account</h4>
+						<ul>
+							<li><a href="javascript:void(0)">Profile</a></li>
+							<li><a href="javascript:void(0)">Favorites</a></li>
+							<li><a href="javascript:void(0)">Watchlist</a></li>
+							<li><a href="javascript:void(0)">My Collections</a></li>
+							<li><a href="javascript:void(0)">Create</a></li>
+							<li><a href="javascript:void(0)">Settings</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-6">
+					<div class="footer-link">
+						<h4>Resources</h4>
+						<ul>
+							<li><a href="javascript:void(0)">Learn</a></li>
+							<li><a href="javascript:void(0)">Help Center</a></li>
+							<li><a href="javascript:void(0)">Platform Status</a></li>
+							<li><a href="javascript:void(0)">Partners</a></li>
+							<li><a href="javascript:void(0)">Taxes Blog</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-6">
+					<div class="footer-link">
+						<h4>Company</h4>
+						<ul>
+							<li><a href="javascript:void(0)">About</a></li>
+							<li><a href="javascript:void(0)">Careers</a></li>
+							<li><a href="javascript:void(0)">Ventures</a></li>
+							<li><a href="javascript:void(0)">Grants</a></li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+			<div class="row footer-copyright">
+				<div class="col-lg-6">
+					<div class="copyright-content">
+						<p>© 2022 Artlux</p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="document-link">
+						<ul>
+							<li><a href="javascript:void(0)">Privacy Policy</a></li>
+							<li><a href="javascript:void(0)">Terms of Service</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </footer>
+	    
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="assets/js/utils.js"></script>
+<script type="text/javascript" src="./assets/js/contracts.js"></script>
+<script
+  src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+  type="application/javascript">
+</script>
+<script type="module" src="./assets/js/script.js"></script>
+<script>
+
+	$('#myModal').on('shown.bs.modal', function () {
+		$('#myInput').trigger('focus')
+	})
+
+	$(document).ready(function() {
+    $(window).scroll(function() {
+      if ($(document).scrollTop() > 50) {
+        $("#header").addClass("fixed-header-custom");
+      } else {
+        $("#header").removeClass("fixed-header-custom");
+      }
+    });
+  });
+
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

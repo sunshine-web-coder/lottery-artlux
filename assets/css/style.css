@@ -1,0 +1,727 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+:root{
+    --dark_blue:#1f2330;
+}
+/* common css start */
+.pt-100{
+    padding-top: 100px;
+}
+.pb-100{
+    padding-bottom: 100px;
+}
+.custom-btn {
+    background: #2b59fd;
+    white-space: nowrap;
+    border: unset;
+    padding: 12px 18px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    font-size: 15px;
+    border: 1px solid #2b59fd;
+    transition: all 200ms ease-in-out;
+}
+.custom-btn:hover {
+    background: transparent !important;
+    color: #2b59fd;
+}
+body {
+    overflow-x: hidden;
+}
+button.navbar-toggler {
+    filter: invert(1) drop-shadow(0px 0px 0px #fff);
+    opacity: 1;
+}
+/* common css end */
+
+/* header start */
+header {
+    position: fixed;
+    width: 100vw;
+    z-index: 111;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.nav-search-div {
+    display: flex;
+    background: #fff;
+    box-shadow: 1px 1px 10px#ccc;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 400px;
+}
+.nav-search-div input {
+    border: unset;
+    outline: none;
+    width: 100%;
+}
+.nav-search-div button {
+    border: unset;
+    background: transparent;
+    color: #1fd694;
+}
+.nav-after-links ul li {
+    list-style: none;
+}
+.nav-after-links ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    display: flex;
+    gap: 20px;
+}
+.nav-after-links ul li a {
+    width: 45px;
+    height: 45px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 10px #ccc;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #000;
+    background: #fff;
+}
+.nav-after-links {
+    display: flex;
+    gap: 40px;
+}
+ul.navbar-nav li a {
+    color: #fff !important;
+}
+/* header end */
+
+/* banner start */
+.row.banner-main-row {
+    background: url('../images/banner_bg.jpg');
+    border-radius: 13px;
+    align-items: center;
+    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+.banner-main-section {
+    background-image: linear-gradient(124deg, #a02ec7, #3456f9,#f8ca2c);
+    background-size: 100% 80%;
+    background-repeat: no-repeat;
+    background-color: #fff;
+}
+.banner-content h5 {
+    color: #fff;
+    font-size: 30px;
+    letter-spacing: 7px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.banner-content h1 {
+    font-size: 60px;
+    color: #ffce25;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.banner-content h2 {
+    color: #fff;
+    font-size: 45px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.banner-content {
+    width: fit-content;
+    margin-inline: auto;
+}
+/* banner end */
+
+/* get tickets start */
+.get-ticket-content h1 {
+    font-size: 55px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.get-ticket-content p {
+    line-height: 29px;
+    margin-bottom: 30px;
+}
+.get-ticket-content h5 span b {
+    display: inline-block;
+    height: 50px;
+    width: 44px;
+    background: linear-gradient(90deg, #9a3ccf, #3555f8);
+    font-size: 40px;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    font-family: sans-serif !important;
+    border-radius: 10px;
+    margin-right: 4px;
+}
+.get-ticket-content h5 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #a02fc8;
+    margin-bottom: 0;
+}
+.get-ticket-content h5 span {
+    display: inline-flex;
+    align-items: center;
+    color: #000;
+}
+.get-ticket-inner {
+    background: #fff;
+    box-shadow: 1px 1px 10px #ccc;
+    margin: 30px 60px;
+    border-radius: 10px;
+    position: relative;
+}
+.get-ticket-inner-div{
+    padding: 20px;
+}
+.next-draw {
+    background: #1f2330;
+    padding: 20px;
+    border-radius: 7px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.next-draw p {
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.next-draw p span {
+    font-weight: 600;
+}
+.next-draw p {
+    font-weight: 100 !important;
+}
+.prizeploat {
+    background: #f9e9ff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+.prizeploat h2 small {
+    font-size: 14px;
+    font-weight: 100;
+}
+.prizeploat h2 {
+    line-height: 25px;
+    margin-bottom: 0;
+    font-weight: bold;
+    color: #a237c8;
+}
+.prizeploat p {
+    color: #a237c8;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.tract-ticket {
+    text-align: center;
+}
+.tecket-detail {
+    padding: 15px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+}
+.tecket-detail a {
+    color: #000;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+.get-ticket-inner:before {
+    position: absolute;
+    content: '';
+    background: linear-gradient(135deg, #a02fc8, #ce93e3);
+    height: 150%;
+    width: 20px;
+    border-radius: 13px;
+    transform: rotate(-62deg);
+    right: 0;
+    left: -37px;
+    margin: 0 auto;
+    bottom: -42%;
+    z-index: -1;
+}
+.get-ticket-inner:after {
+    position: absolute;
+    content: '';
+    background: linear-gradient(135deg, #fece27, #fff0be);
+    height: 140%;
+    width: 20px;
+    border-radius: 13px;
+    transform: rotate(-62deg);
+    right: 0;
+    left: -37px;
+    margin: 0 auto;
+    bottom: -50%;
+    z-index: -1;
+}
+/* get tickets end */
+
+/* wallet start */
+.row.wallet-main-row {
+    background: url('../images/wallet_bg.png');
+    border-radius: 10px;
+    align-items: center;
+    padding: 50px 20px;
+    margin-inline: 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.wallet-section h2 {
+    font-size: 55px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+a.all-history {
+    background: #e5ebff;
+    padding: 12px 20px;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #000;
+    font-weight: 600;
+    margin-right: 10px;
+}
+/* wallet end */
+
+/* winning start */
+.winning-prize ul {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0;
+}
+.winning-prize ul li {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 22px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.winning-prize ul li:nth-child(3n+1) {
+   background-image: url('../images/btn1.png');
+}
+.winning-prize ul li:nth-child(3n+2) {
+   background-image: url('../images/btn2.png');
+}
+.winning-prize ul li:nth-child(3n+3) {
+   background-image: url('../images/btn3.png');
+}
+.winning-prize{
+    position: relative;
+}
+.winning-prize > span {
+    background: #2b59fd;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    font-size: 13px;
+    padding-inline: 10px;
+    border-radius: 10px;
+}
+.next-draw.Round-custom p span span {
+    background: #f9e9ff;
+    color: #a237c8;
+    font-size: 13px;
+    padding: 2px 8px;
+    border-radius: 11px;
+}
+/* winning end */
+
+/* how to play start */
+.how-to-play-heading.text-center h2 {
+    font-size: 45px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.how-to-play-section {
+    background-image: linear-gradient(-124deg, #a02ec7, #3456f9,#f8ca2c);
+    background-size: 100% 80%;
+    background-color: #fff !important;
+    background-repeat: no-repeat;
+}
+.how-to-play-main-row {
+    background: rgb(255, 255, 255);
+    padding: 75px 30px;
+    border-radius: 15px;
+    box-shadow: rgb(204, 204, 204) 1px 1px 10px;
+    position: relative;
+    margin-inline: 0;
+}
+.how-to-play-main-row:before {
+    position: absolute;
+    content: '';
+    width: 200px;
+    height: 200px;
+    background: #ffffff36;
+    right: -70px;
+    top: -70px;
+    border-radius: 50%;
+    z-index: 0;
+}
+.how-to-play-main-row:after {
+    position: absolute;
+    content: '';
+    width: 140px;
+    height: 140px;
+    background: #ffffff36;
+    left: -70px;
+    top: 120px;
+    border-radius: 50%;
+    z-index: 0;
+}
+.how-toplay-div h4 {
+    font-weight: 600;
+    margin: 15px 0;
+}
+.how-toplay-div p {
+    margin-bottom: 0;
+}
+/* how to play end */
+ 
+/* winning start */
+.winning-content h1 {
+    font-size: 55px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+.winning-content p {
+    line-height: 30px;
+}
+.winning-content ul li {
+    list-style: none;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.winning-content ul {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.winning-content ul li span {
+    display: inline-block;
+    width: 27px;
+    height: 27px;
+    background: #ffce25;
+    border-radius: 50%;
+    border: 8px solid #fff5d3;
+}
+/* winning end */
+
+/* footer css start */
+footer {
+    background: var(--dark_blue);
+}
+.footer-input-data {
+    background: linear-gradient(124deg, #a02ec7, #3456f9,#f8ca2c);
+}
+.footer-input-data {
+    text-align: center;
+    padding: 40px 30px;
+    border-radius: 15px;
+}
+.footer-input-data h2 {
+    font-size: 45px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+.email-div {
+    background: #fff;
+    padding: 15px;
+    display: flex;
+    border-radius: 5px;
+    width: 55%;
+    margin-inline: auto;
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+.email-div input {
+    width: 100%;
+    border: unset;
+    outline: none;
+}
+.footer-input-data ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.footer-input-data ul li a {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: all 200ms ease-in-out;
+}
+.footer-input-data ul li {
+    list-style: none;
+}
+.footer-input-data ul li a:hover {
+    background: #fff;
+    color: #000;
+}
+.footer-information p {
+    color: #fff;
+    margin-top: 20px;
+    line-height: 31px;
+}
+.footer-link h4 {
+    color: #fff;
+    font-size: 21px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.footer-link ul {
+    padding-left: unset;
+    margin-bottom: 0;
+}
+.footer-link ul li a {
+    text-decoration: none;
+    color: #d2d1d1;
+    margin-bottom: 11px;
+    display: inline-block;
+    font-size: 15px;
+}
+.copyright-content p {
+    color: #fff;
+    margin-bottom: 0;
+}
+.document-link ul {
+    display: flex;
+    justify-content: end;
+    gap: 25px;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.document-link ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+.document-link ul li {
+    list-style: none;
+}
+.row.footer-copyright {
+    border-top: 1px solid #fff;
+    padding: 30px 0;
+}
+header.fixed-header-custom {
+    background-image: linear-gradient(124deg, #a02ec7, #3456f9,#f8ca2c);
+    box-shadow: 1px 1px 10px #ccc;
+}
+/* footer css end */
+
+/* responsive start */
+
+
+@media(max-width:1399.5px) and (min-width:992px){
+    
+    .get-ticket-inner:before {
+        height: 120%;
+        bottom: -31%;
+    }
+    .get-ticket-inner:after {
+        height: 114%;
+        bottom: -39%;
+    }
+}
+@media(max-width:1199.5px) and (min-width:992px){
+    .nav-search-div {
+        width: 200px;
+    }
+    .get-ticket-inner {
+        margin: 30px 20px;
+    }
+    .prizeploat {
+        padding: 25px 20px;
+    }
+    .winning-prize ul li {
+        width: 40px;
+        height: 40px;
+    }
+    .next-draw p {
+        font-size: 13px;
+    }
+    .wallet-section h2 {
+        font-size: 38px;
+    }
+    .get-ticket-content h1,.get-ticket-content h1,.winning-content h1 {
+        font-size: 46px;
+    }
+    .banner-content h1 {
+        font-size: 50px;
+    }
+    .banner-content h5 {
+        font-size: 25px;
+    }
+    .banner-content h2 {
+        font-size: 35px;
+    }
+    .get-ticket-content h5 span b {
+        height: 44px;
+        font-size: 37px;
+    }
+    .how-toplay-div h4 {
+        font-size: 19px;
+    }
+    .how-toplay-div p,.winning-content ul li,.winning-content p,.get-ticket-content p {
+        font-size: 15px;
+    }
+}
+@media(max-width:991.5px){
+    .banner-content {
+        width: 100%;
+        text-align: center;
+        padding-bottom: 60px;
+        padding-top: 20px;
+    }
+    .get-ticket-content {
+        text-align: center;
+    }
+    .get-ticket-content h5 {
+        justify-content: center;
+    }
+    .wallet-section {
+        text-align: center;
+    }
+    .wallet-section h2 {
+        font-size: 40px;
+    }
+    .wallet-section button {
+        font-size: 15px !important;
+    }
+    .wallet-section {
+        margin-top: 30px;
+    }
+    .how-to-play-main-row .col {
+        flex: 1 0 50%;
+    }
+    .how-toplay-div {
+        margin-bottom: 30px;
+    }
+    .winning-content {
+        text-align: center;
+        margin-top: 30px;
+    }
+    .winning-content ul li {
+        justify-content: center;
+        text-align: left;
+    }
+    .email-div {
+        width: 85%;
+    }
+    .footer-link {
+        margin-bottom: 30px;
+    }
+    .copyright-content {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .document-link ul {
+        justify-content: center;
+    }
+    html {
+        overflow-x: hidden;
+    }
+    .get-ticket-inner:before {
+        height: 120%;
+        bottom: -28%;
+    }
+    .get-ticket-inner:after {
+        height: 120%;
+        bottom: -17%;
+    }
+    .winning-prize ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .prizeploat.d-block.winning-prize p {
+        text-align: center;
+    }
+    .next-draw.Round-custom p {
+        justify-content: center;
+    }
+    header {
+        background-image: linear-gradient(124deg, #a02ec7, #3456f9,#f8ca2c);
+    }
+    .nav-after-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .nav-search-div {
+        width: 300px;
+    }
+    ul.navbar-nav {
+        gap: 10px !important;
+        margin-top: 20px;
+    }
+    .winning-img img,.wallet-img img {
+        width: 50%;
+    }
+}
+@media(max-width:575.5px){
+    .get-ticket-box {
+        overflow: hidden;
+    }
+    .get-ticket-inner {
+        margin: 30px 10px;
+    }
+    .wallet-section h2 {
+        font-size: 30px;
+    }
+    .get-ticket-content h1, .get-ticket-content h1, .winning-content h1 {
+        font-size: 30px;
+    }
+    .banner-content h1 {
+        font-size: 45px;    
+    }
+    .banner-content h2 {
+        font-size: 30px;
+    }
+    .banner-content h5 {
+        font-size: 25px;
+    }
+    .custom-btn {
+        font-size: 15px !important;
+    }
+    .how-to-play-main-row .col {
+        flex: 1 0 100%;
+    }
+    .pb-100 {
+        padding-bottom: 70px;
+    }
+    .pt-100 {
+        padding-top: 70px;
+    }
+    .how-to-play-heading h2 {
+        font-size: 30px;
+    }
+}
+/* responsive end */
